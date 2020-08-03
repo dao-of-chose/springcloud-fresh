@@ -1,0 +1,29 @@
+server:
+   port: 6666
+
+spring:
+   application:
+      name: fresh-zuul
+      
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://sun:123456@127.0.0.1:6868/eureka
+
+zuul:
+   max:
+      host:
+         connections: 500
+   host:
+      maxTotalConnections: 200
+      maxPerRouteConnections: 20
+      socket-timeout-millis: 60000
+      connect-tiomeout-millis: 60000
+   routes:
+      #标识服务器的名字，可以自定义，一般为了方便建议采用服务器的名字
+      service-rpc-user:
+         # 服务映射路径，目的是为了不暴露你服务器的IP地址
+         path: /user/**
+         serviceId: fresh-user#注册到Eureka Server中的服务器名
+         
+                                

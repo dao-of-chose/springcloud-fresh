@@ -1,0 +1,13 @@
+spring:
+   profiles:
+      active: dev-9999
+
+---
+spring:
+   profiles: dev-9999
+   cloud:
+      config:
+         uri: http://127.0.0.1:5566/
+         label: master
+         name: springcloud-fresh-test
+         profile: dev         

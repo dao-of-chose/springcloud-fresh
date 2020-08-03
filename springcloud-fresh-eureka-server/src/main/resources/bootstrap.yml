@@ -1,0 +1,50 @@
+spring:
+   profiles:
+      active: dev-6868
+            
+---
+server:
+   port: 6868
+spring:
+   profiles:  dev-6868
+   application:
+      name: eureka-server
+   security:
+      user:
+         name: sun
+         password: 123456
+eureka:
+   instance:
+      hostname: 127.0.0.1
+   client:
+      register-With-Eureka: false   #如果需要注册到集群中，需要改成true
+      fetch-Registry: false
+      serviceUrl:
+         defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka
+
+   server: 
+      enable-self-preservation: false #关闭自我保护
+
+---
+server:
+   port: 6869
+spring:
+   profiles:  dev-6869
+   application:
+      name: eureka-server
+   security:
+      user:
+         name: sun
+         password: 123456
+eureka:
+   instance:
+      hostname: localhost
+   client:
+      register-With-Eureka: false   #如果需要注册到集群中，需要改成true
+      fetch-Registry: false
+      serviceUrl:
+         defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka
+
+   server:
+      enable-self-preservation: false #关闭自我保护
+
